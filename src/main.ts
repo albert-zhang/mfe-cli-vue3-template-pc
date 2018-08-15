@@ -6,9 +6,6 @@ import { sync } from 'vuex-router-sync';
 import './assets/common.scss';
 import './assets/element-chalk.scss';
 
-sync(store, router);
-store.commit('auth/init');
-
 import {
   Button,
   Container,
@@ -56,6 +53,10 @@ Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$prompt = MessageBox.prompt;
 
 Vue.config.productionTip = false;
+
+sync(store, router);
+store.commit('auth/init');
+
 
 new Vue({
   router,
