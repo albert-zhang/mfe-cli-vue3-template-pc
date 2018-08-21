@@ -9,6 +9,6 @@ module.exports = {
     config.plugin('html').tap(args => {
       args[0].localScript = localScript;
       return args;
-    })
-  }
+    });
+  },
 };

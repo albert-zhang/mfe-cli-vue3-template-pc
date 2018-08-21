@@ -6,12 +6,13 @@ function build() {
   if (isProduction) {
     return '';
   }
-  let toReturn = `\nwindow.servicePrefix = {}\n`;
-  const allServiceRequired = process.env.SERVICES_REQUIRED.split(/\s*,\s*/);
-  allServiceRequired.forEach(service => {
-    const v = process.env[`LOCAL_SERVICE_PREFIX_${service}`];
-    toReturn += `window.servicePrefix['${service}'] = '${v}';\n`;
+  let toReturn = `\nwindow.configs = {`;
+  Object.keys(process.env).forEach(k => {
+    if (k.startsWith('service_prefix.')) {
+      toReturn += `${k}: ${process.env[k]},`;
+    }
   });
+  toReturn += '};';
   return toReturn;
 }
 
