@@ -7,8 +7,9 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>mfe-cli-vue3-template-pc</title>
     <script>
-      <%= htmlWebpackPlugin.options.localScript %>
+      <%= htmlWebpackPlugin.options.localConfigs %>
     </script>
+    <script>'{{APOLLO_CONFIGS}}';</script>
   </head>
   <body>
     <noscript>

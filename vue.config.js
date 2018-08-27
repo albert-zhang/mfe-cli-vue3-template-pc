@@ -1,5 +1,5 @@
 
-const localScript = require('./build/local-script');
+const localConfigs = require('./build/local-configs');
 const devServerConfig = require('./build/dev-server-config');
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
   chainWebpack: config => {
     // ref: https://github.com/mozilla-neutrino/webpack-chain
     config.plugin('html').tap(args => {
-      args[0].localScript = localScript;
+      args[0].localConfigs = localConfigs;
       return args;
     });
   },
