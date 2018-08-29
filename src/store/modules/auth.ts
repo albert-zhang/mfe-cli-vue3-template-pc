@@ -1,29 +1,29 @@
 import { constantRoutes, asyncRoutes } from '@/router/routes';
 import { RouteConfig } from 'vue-router';
+import StoreDecorator, {
+  Action,
+  Mutation,
+  Getter,
+} from '@mydreamplus/aglarond/lib/store-decorator';
 import router from '@/router';
 
 interface StateType {
   routes: RouteConfig[];
 }
 
-const state: StateType = {
-  routes: [],
-};
+@StoreDecorator
+class StoreModule {
+  public state() {
+    return {
+      routes: [],
+    };
+  }
 
-const mutations = {
-  init(st: StateType) {
+  @Mutation('anyStateKey')
+  public init(state: StateType) {
     router.addRoutes(asyncRoutes);
-    st.routes = constantRoutes.concat(asyncRoutes);
-  },
-};
+    state.routes = constantRoutes.concat(asyncRoutes);
+  }
+}
 
-const actions = {
-  //
-};
-
-export default {
-  namespaced: true,
-  state,
-  mutations,
-  actions,
-};
+export default new StoreModule();
