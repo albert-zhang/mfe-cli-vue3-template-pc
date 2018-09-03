@@ -3,8 +3,8 @@ import App from './App.vue';
 import router from '@/router';
 import store from '@/store';
 import { sync } from 'vuex-router-sync';
+import './element-variables.scss';
 import './assets/common.scss';
-import './assets/element-chalk.scss';
 
 import {
   Button,
@@ -58,8 +58,10 @@ sync(store, router);
 store.commit('auth/init');
 
 
-new Vue({
+const inst = new Vue({
   router,
   store,
   render: (h) => h(App),
 }).$mount('#app');
+
+(window as any).myVueInstance = inst;

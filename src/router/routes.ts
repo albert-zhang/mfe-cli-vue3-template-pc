@@ -1,6 +1,6 @@
-import Layout from '@/components/layout/Layout.vue';
-import Error from '@/components/layout/Error.vue';
-import NotFound from '@/components/layout/NotFound.vue';
+import Layout from '@/components/Layout.vue';
+import Error from '@/components/Error.vue';
+import NotFound from '@/components/NotFound.vue';
 
 const constantRoutes = [
   {

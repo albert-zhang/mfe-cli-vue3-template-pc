@@ -1,11 +1,10 @@
 <template>
-  <el-breadcrumb class="mxj-breadcrumb" separator="/">
+  <el-breadcrumb class="mxj-breadcrumb" separator-class="el-icon-arrow-right">
     <template v-for="(item) in level">
       <el-breadcrumb-item
         :key="item.path"
         :to="item.pageRoot || item.pageLast ? '' : item.path"
-        :class="item.pageRoot ? 'mxj-breadcrumb-page-root' : ''"
-      >
+        :class="item.pageRoot ? 'mxj-breadcrumb-page-root' : ''">
         {{ item.name }}
       </el-breadcrumb-item>
     </template>
@@ -80,9 +79,10 @@ export default class MxjBreadcrumb extends Vue {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .mxj-breadcrumb {
-  &-page-root /deep/ {
+  line-height: 40px;
+  &-page-root {
     .el-breadcrumb__inner, .el-breadcrumb__inner a {
       color: #606266;
       font-weight: normal;
