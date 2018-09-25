@@ -1,4 +1,4 @@
-import {BaseHTTPClient, XhrResultParserPresetType, XhrResponse, XhrError} from '@mydreamplus/aglarond/lib/http';
+import {BaseHTTPClient, MxjResultParserPresetType, MxjResponse, MxjResponseError} from '@mydreamplus/aglarond/lib/http';
 
 class ApiClient extends BaseHTTPClient {
   constructor() {
@@ -6,7 +6,7 @@ class ApiClient extends BaseHTTPClient {
       // baseURL 根据你要调用的服务来设置，服务名与.env中配置的SERVICES_REQUIRED保持一致:
       baseURL: (window as any).servicePrefix.smartOffice,
       resultParserConfig: {
-        presetType:XhrResultParserPresetType.ONLY_PHP, // 根据调用的服务情况调整
+        presetType: MxjResultParserPresetType.ONLY_PHP, // 根据调用的服务情况调整
       },
     });
     // 根据需要设置相应的header，当然也可以在其它地方设置
@@ -15,10 +15,10 @@ class ApiClient extends BaseHTTPClient {
     });
   }
 
-  protected processResult(r: Promise<XhrResponse>) {
+  protected processResult(r: Promise<MxjResponse>) {
     return r;
     /* example:
-     *return r.catch((err: XhrError) => {
+     *return r.catch((err: MxjResponseError) => {
      *  if (err.code === 100403) {
      *    const store: any = {};
      *    store.dispatch('goLogin');
