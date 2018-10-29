@@ -1,21 +1,4 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: sans-serif;
-}
-
-.el-menu-item > .iconfont {
-  margin-right: 5px;
-}
-
-.el-submenu__title > .iconfont {
-  margin-right: 5px;
-}
-
-.BlackDropdownPopover {
+.mxj-el-dropdown-popover-black {
   background-color: #000 !important;
   border-color: #000 !important;
   border-radius: 0 !important;
@@ -32,4 +15,20 @@ html, body {
       border-bottom-color: #000 !important;
     }
   }
+}
+
+
+.el-button--default:focus {
+  background-color: #fff !important;
+}
+
+.el-button--default:active {
+  background-color: #e6e6e6 !important;
+}
+
+.el-button--primary:focus {
+  background-color: #000 !important;
+}
+.el-button--primary:active {
+  background-color: #333 !important;
 }

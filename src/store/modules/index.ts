@@ -1,7 +1,8 @@
 import auth from './auth';
-import message from './message';
+import apps from './apps';
+
 
 export default {
   auth,
-  message,
+  apps,
 };

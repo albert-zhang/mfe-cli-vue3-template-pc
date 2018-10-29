@@ -1,19 +1,19 @@
-import Layout from '@/components/Layout.vue';
-import Error from '@/components/Error.vue';
-import NotFound from '@/components/NotFound.vue';
+import { Layout, Error, NotFound } from '../components';
+
+import appMain from './appMain';
 
 const constantRoutes = [
   {
-    path: '/',
-    name: '首页',
+    path: '',
+    redirect: '/app/main',
+  },
+  {
+    path: '/app',
     component: Layout,
-    icon: 'icon-home-fill',
-    children: [{
-      path: '',
-      name: '',
-      meta: { text: '首页' },
-      component: () => import('@/views/Home.vue'),
-    }],
+    children: [
+      appMain,
+      // TODO: 添加其它app
+    ],
   },
   {
     path: '/error',
@@ -24,6 +24,7 @@ const constantRoutes = [
   {
     path: '/404',
     hidden: true,
+    name: '404',
     component: NotFound,
   },
   {
@@ -35,24 +36,7 @@ const constantRoutes = [
 
 export default constantRoutes;
 
-const asyncRoutes = [
-  {
-    path: '/example',
-    name: '示例',
-    icon: 'icon-hourglass-fill',
-    component: Layout,
-    children: [
-      {
-        path: 'example',
-        name: '示例',
-        meta: {
-          text: '示例',
-        },
-        component: () => import('@/views/Example.vue'),
-      },
-    ],
-  },
-];
+const asyncRoutes: any = [];
 
 export {
   asyncRoutes,

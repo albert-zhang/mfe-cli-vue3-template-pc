@@ -1,0 +1,96 @@
+// 表单响应式公共设置
+
+// 移动端适配
+@media (max-width: $width-breakpoint-pc) {
+
+  // 消息弹窗适配
+  .el-message-box {
+    width: 90%;
+  }
+
+  // 时间范围适配
+  .el-date-range-picker {
+    width: 100%;
+    overflow: scroll;
+  }
+
+  // 同一个表单中元素上下换行间隔
+  .form-item__split--normal {
+    margin-top: 5px;
+  }
+
+  // 表单新增/编辑时label上下排版
+  .el-form__edit {
+    .el-form-item__label {
+      text-align: left;
+      width: 100%;
+    }
+
+    //阻止上下排版
+    .form-item__label--prevent-new-line {
+      .el-form-item__label {
+        width: auto;
+      }
+    }
+  }
+
+  // 引导提示文字
+  .form-item__tip--info {
+    display: block;
+
+    &.inline {
+      display: inline;
+    }
+  }
+}
+
+// pc端表单默认布局
+@media (min-width: $width-breakpoint-pc) {
+  .el-form__edit, .el-form__detail {
+    &.el-form {
+      max-width: 1106px;
+    }
+  }
+
+  .el-form__edit {
+    .el-form-item__label {
+      width: 110px;
+      text-align: right;
+    }
+
+    .el-form-item__content {
+      margin-left: 110px;
+    }
+  }
+}
+
+// 设置整体表单显示和编辑的lable和文字大小
+.el-form__edit, .el-form__detail {
+
+  .el-form-item__label, .el-form-item__content,
+  .el-radio__label, .el-checkbox__label,
+  .el-select, .el-input__inner, .el-select-dropdown__item {
+    font-size: 12px;
+  }
+}
+
+
+// 用户引导提示文字
+.form-item__tip--info {
+  color: $text-color-8;
+  font-size: 11px;
+}
+
+// 设置整行元素或单元格label上下排版
+.el-row, .el-form-item {
+  .el-form-item__content {
+    word-break: break-all;
+  }
+
+  &.form-item__lable--new-line {
+    .el-form-item__label {
+      text-align: left;
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+$width-breakpoint-pc: 768px;
+
+// 主色
+$white: #fff;
+$black: #000;
+$main-color-1: #1d2024;
+$main-color-2: #3f4048;
+$main-color-3: #606166;
+$main-color-4: #bbb;
+$main-color-5: #eae8eb;
+$main-color-6: #f1f1f1;
+$main-color-7: #f5f5f5;
+$main-color-8: #f8f8f8;
+
+// 辅助用色
+$assist-color-1: #edeef1;
+$assist-color-2: #e9edfb;
+$primary: #4b74ff;
+$danger: #ff3c00;
+$warning: #ff9e00;
+$success: #73c800;
+
+// 背景用色
+$back-color-1: $black; // #000
+$back-color-2: $main-color-1; // #1d2024
+$back-color-3: $main-color-6; // #f1f1f1
+$back-color-4: $main-color-8; // #f8f8f8
+$back-color-5: $white; // #fff
+$back-color-6: $assist-color-2; // #e9edfb
+
+// 分割线、边框、 滚动条用色
+$line-color: $main-color-5; // #eae8eb
+$border-color: $main-color-5; // #eae8eb
+
+// 文本用色
+$text-color-1: $white; // #fff
+$text-color-2: $main-color-4; // #bbb
+$text-color-3: $main-color-3; // #606166
+$text-color-4: $main-color-2; // #3f4048
+$text-color-5: $main-color-1; // #1d2024
+$text-color-6: $primary; // #4b74ff
+$text-color-7: $danger; // #ff3c00
+$text-color-8: $warning; // #ff9e00
+$text-color-9: $success; // #73c800
+
+// 图标用色
+$icon-checked-color: $main-color-2; // #3f4048
+$icon-readonly-color: $main-color-3; // #606166
+$icon-default-color: $white; // #fff

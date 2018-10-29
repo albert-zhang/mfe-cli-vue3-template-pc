@@ -1,0 +1,7 @@
+@import '../vars.scss';
+
+@mixin media-width-pc {
+  @media (min-width: $width-breakpoint-pc) {
+    @content;
+  }
+}

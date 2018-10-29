@@ -1,6 +1,8 @@
 const mockRoutes = require('../mock');
 
-const devServerConfig = {};
+const devServerConfig = {
+  disableHostCheck: true,
+};
 
 if (process.env.ENABLE_MOCK === '1') {
   devServerConfig.before = app => {

@@ -1,26 +1,26 @@
 <template>
-  <el-container class="Layout">
-    <el-header class="TopMenuHeader" style="background-color: #000;">
+  <el-container class="mxj-layout">
+    <el-header class="mxj-layout__header" style="background-color: #000;">
       <TopMenu @open-aside="onOpenAside()">
-        <div slot="right" class="TopMenuRightArea">
-          <MessageCenterButton></MessageCenterButton>
+        <div slot="right" class="mxj-layout__header__top-menu__right-area">
+          <MessageCenterButton v-if="false"></MessageCenterButton>
           <AccountButton style="margin-left: 30px;"></AccountButton>
         </div>
       </TopMenu>
     </el-header>
     <el-container>
-      <el-aside class="SideMenuAside" :style="sideMenuAsideStyle">
-        <mxj-side :visible="isSideVisible"
+      <el-aside class="mxj-layout__container__aside" :style="sideMenuAsideStyle">
+        <mxj-side :visible="isSideVisible" :collapsed="isSideCollapsed"
           @close="onCloseAside()"
           @collapse="isSideCollapsed = true"
           @expand="isSideCollapsed = false"/>
       </el-aside>
       <el-container>
-        <el-header class="BreadcrumbHeader">
+        <el-header class="mxj-layout__container__breadcrumb-header">
           <mxj-breadcrumb />
         </el-header>
         <el-main>
-          <router-view />
+          <router-view class="mxj-layout__container__view" />
         </el-main>
       </el-container>
     </el-container>
@@ -31,8 +31,8 @@
 import { Getter, Action, namespace } from 'vuex-class';
 import { Vue, Component } from 'vue-property-decorator';
 import { Badge, Dropdown, DropdownMenu, DropdownItem } from 'element-ui';
-import {ResponsiveUtil, GlobalEvents} from '@/util';
-import {eventBusOn} from '@mydreamplus/aglarond/lib/basic';
+import { ResponsiveUtil, GlobalEvents } from '../../util';
+import { eventBusOn } from '@mydreamplus/aglarond/lib/basic';
 import TopMenu from './TopMenu.vue';
 import AccountButton from './AccountButton.vue';
 import MessageCenterButton from './MessageCenterButton.vue';
@@ -47,7 +47,7 @@ const getter = namespace('auth', Getter);
     [DropdownMenu.name]: DropdownMenu,
     [DropdownItem.name]: DropdownItem,
     'mxj-side': () => import('./Side.vue'),
-    'mxj-breadcrumb': () => import('./Breadcrumb.vue'),
+    'mxj-breadcrumb': () => import('../breadcrumb/index.vue'),
     TopMenu,
     AccountButton,
     MessageCenterButton,
@@ -82,8 +82,22 @@ export default class Layout extends Vue {
     eventBusOn(GlobalEvents.RESPONSIVE_MIN_WIDTH_CHANGED_EVENT, this.updateForScreenWith);
   }
 
+  private mounted() { // 滚动时面包屑效果
+    const el: any = this.$el.querySelector('.el-main');
+    if (el) {
+      el.addEventListener('scroll', () => {
+        if (el.scrollTop > 0) {
+          el.style['box-shadow'] = '0 2px 5px #888';
+        } else {
+          el.style['box-shadow'] = 'none';
+        }
+      });
+    }
+  }
+
   private updateForScreenWith(isLageScreen: boolean) {
     this.isLageScreen = isLageScreen;
+    this.isSideCollapsed = false;
     if (isLageScreen) {
       this.setAsideVisible(true, false);
     } else {
@@ -118,26 +132,36 @@ export default class Layout extends Vue {
 }
 </script>
 <style lang="scss">
-@import "@/assets/vars.scss";
+@import '../../assets/css/response/mixin';
 
-.Layout {
+.mxj-layout {
   .el-aside {
     color: #333;
   }
   .el-main {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
     color: #333;
   }
 
   .el-dropdown-link {
     cursor: pointer;
-    color: #409EFF;
+    color: #409eff;
   }
   .el-icon-arrow-down {
     font-size: 12px;
   }
 }
 
-.SideMenuAside {
+.mxj-layout__container__view {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.mxj-layout__container__aside {
   position: absolute;
   z-index: 100;
   top: 0;
@@ -146,29 +170,31 @@ export default class Layout extends Vue {
   background: transparent;
   transition: width 0.3s;
 }
-@include media-breakpoint-up {
-  .SideMenuAside {
+@include media-width-pc {
+  .mxj-layout__container__aside {
     position: relative;
   }
 }
 
-.TopMenuHeader {
-  padding-left: 10px !important;
-  padding-right: 10px !important;
+.mxj-layout__header {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
 }
 
-@include media-breakpoint-up {
-  .TopMenuHeader {
+@include media-width-pc {
+  .mxj-layout__header {
+    padding-left: 25px !important;
+    padding-right: 25px !important;
   }
 }
 
-.TopMenuRightArea {
+.mxj-layout__header__top-menu__right-area {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
 }
 
-.BreadcrumbHeader {
+.mxj-layout__container__breadcrumb-header {
   height: unset !important;
 }
 </style>

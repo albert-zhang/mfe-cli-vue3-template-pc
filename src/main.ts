@@ -4,7 +4,7 @@ import router from '@/router';
 import store from '@/store';
 import { sync } from 'vuex-router-sync';
 import './element-variables.scss';
-import './assets/common.scss';
+import './assets/css/index.scss';
 
 import {
   Button,
@@ -14,6 +14,10 @@ import {
   Main,
   Row,
   Col,
+  Checkbox,
+  RadioButton,
+  RadioGroup,
+  Radio,
   Table,
   TableColumn,
   Loading,
@@ -35,6 +39,10 @@ Vue.use(Main);
 Vue.use(Button);
 Vue.use(Row);
 Vue.use(Col);
+Vue.use(Checkbox);
+Vue.use(RadioButton);
+Vue.use(RadioGroup);
+Vue.use(Radio);
 Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Loading);
@@ -55,13 +63,9 @@ Vue.prototype.$prompt = MessageBox.prompt;
 Vue.config.productionTip = false;
 
 sync(store, router);
-store.commit('auth/init');
-
 
 const inst = new Vue({
   router,
   store,
   render: (h) => h(App),
 }).$mount('#app');
-
-(window as any).myVueInstance = inst;
