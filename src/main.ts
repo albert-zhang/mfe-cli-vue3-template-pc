@@ -6,6 +6,10 @@ import { sync } from 'vuex-router-sync';
 import './element-variables.scss';
 import './assets/css/index.scss';
 
+import './directive';
+import './filter';
+import './plugin';
+
 import {
   Button,
   Container,
