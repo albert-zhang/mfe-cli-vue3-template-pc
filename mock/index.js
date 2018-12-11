@@ -10,7 +10,7 @@ function run() {
   });
   const port = 9091;
   server.listen(port, () => {
-    console.log(`\nmock server listening on port ${port} ......\n`);
+    console.log(`\njson-server listening on port ${port} ......\n`);
   });
 }
 

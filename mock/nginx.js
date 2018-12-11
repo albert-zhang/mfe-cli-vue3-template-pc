@@ -11,7 +11,7 @@ function readProxyPassLocations() {
   Object.keys(mockEnvs).forEach(mockK => {
     if (mockK.startsWith('service_prefix.')) {
       const mockV = mockEnvs[mockK];
-      const urlPath = mockV.replace('http://localhost:9090', '');
+      const urlPath = mockV.replace('localhost:9090', '');
       const devServer = devEnvs[mockK];
       if (devServer){
         const devServerReg = /(https?:)?(\/\/)?([^\/]+)(\/)?(.*)/;
@@ -53,6 +53,14 @@ location ${location} {
   return directives;
 }
 
+function outputLines(str) {
+  console.log('------------------------------------------------------------');
+  str.split(/[\r\n]+/g).forEach(line => {
+    console.log(`|  ${line}`);
+  });
+  console.log('------------------------------------------------------------');
+}
+
 function run() {
   const directives = generateNginxLocationDirectives();
   const server = `
@@ -63,7 +71,11 @@ server {
 }
   `;
 
+  console.log('\nnginx config:');
+  outputLines(server);
+
   nginx.start(server);
+  console.log('nginx running ......\n');
 }
 
 run();

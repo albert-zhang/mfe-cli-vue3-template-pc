@@ -10,6 +10,8 @@ import './directive';
 import './filter';
 import './plugin';
 
+import axios from 'axios';
+
 import {
   Button,
   Container,
@@ -67,6 +69,10 @@ Vue.prototype.$prompt = MessageBox.prompt;
 Vue.config.productionTip = false;
 
 sync(store, router);
+
+axios.post('http://localhost:9090/abc/posts/2?a=1&b=233', {haha: 'r'}).then((a: any) => {
+  console.log(a);
+});
 
 const inst = new Vue({
   router,
