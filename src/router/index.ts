@@ -1,14 +1,20 @@
 import Vue from 'vue';
-import VueRouter, { Route } from 'vue-router';
+import VueRouter, { Route, RouteConfig } from 'vue-router';
 import store from '../store';
-import appMain from './appMain';
 import { constantRoutes } from './routes';
 import { PermissionUtil } from '../util';
 
 Vue.use(VueRouter);
 
-store.dispatch('apps/registerRoutes', appMain);
-// TODO: 添加其它app
+constantRoutes.forEach((r: RouteConfig) => {
+  if (r.path === '/app') {
+    if (r.children && r.children.length > 0) {
+      r.children.forEach((child: RouteConfig) => {
+        store.dispatch('apps/registerRoutes', child);
+      });
+    }
+  }
+});
 
 const router = new VueRouter({
   mode: 'history',
@@ -45,7 +51,7 @@ router.beforeEach(async (to: Route, from: Route, next: any) => {
 });
 
 router.afterEach(async (to: Route, from: Route) => {
-  if (to.name === from.name) {
+  if (to.fullPath === from.fullPath) {
     return;
   }
 

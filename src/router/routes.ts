@@ -8,7 +8,7 @@ const constantRoutes = [
     redirect: '/app/main',
   },
   {
-    path: '/app',
+    path: '/app', // 不能变，因为在index.ts中有使用
     component: Layout,
     children: [
       appMain,

@@ -61,6 +61,11 @@ export default class TopMenu extends Vue {
     this.updateTabSelection();
   }
 
+  @Watch('currentAppName')
+  private watchRoute() {
+    this.updateTabSelection();
+  }
+
   private created() {
     this.updateTabSelection();
   }

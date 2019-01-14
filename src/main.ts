@@ -70,10 +70,6 @@ Vue.config.productionTip = false;
 
 sync(store, router);
 
-axios.post('http://localhost:9090/abc/posts/2?a=1&b=233', {haha: 'r'}).then((a: any) => {
-  console.log(a);
-});
-
 const inst = new Vue({
   router,
   store,
